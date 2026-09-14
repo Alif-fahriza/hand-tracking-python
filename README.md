@@ -187,15 +187,8 @@ Model yang digunakan: **MediaPipe Hands** (task file `hand_landmarker.task`)
 | **Nama** | Alif Fahriza |
 | **Email** | aliffahriza70@gmail.com |
 | **GitHub** | [@Alif-fahriza](https://github.com/Alif-fahriza) |
-| **LinkedIn** | _(opsional — tambahkan jika ada)_ |
 
----
 
-## 📄 Lisensi
-
-Project ini menggunakan lisensi **MIT License** — bebas digunakan, dimodifikasi, dan didistribusikan untuk tujuan apapun.
-
----
 
 ## 🙏 Terima Kasih
 
