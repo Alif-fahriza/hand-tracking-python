@@ -1,23 +1,46 @@
 @echo off
 chcp 65001 >nul
-title Hand Tracking - Tahap 1
+title Hand Tracking - Tahap 4: Hand Volume
 
 echo ================================================
-echo   HAND TRACKING PROJECT - Tahap 1
+echo   HAND TRACKING PROJECT - Tahap 4: Hand Volume
 echo ================================================
 echo.
 
 :: Pindah ke folder script ini berada
 cd /d "%~dp0"
 
-:: Cari Python 3.11
-set PYTHON=C:\Users\User\AppData\Local\Programs\Python\Python311\python.exe
+:: ── Cari Python di PATH ──
+where python >nul 2>nul
+if %errorlevel% equ 0 (
+    set PYTHON=python
+    goto :found
+)
 
-if not exist "%PYTHON%" (
-    echo [ERROR] Python 3.11 tidak ditemukan di:
-    echo         %PYTHON%
+:: ── Coba beberapa lokasi default Python di Windows ──
+set PYTHON=
+for %%P in (
+    "%LOCALAPPDATA%\Programs\Python\Python311\python.exe"
+    "%LOCALAPPDATA%\Programs\Python\Python310\python.exe"
+    "%LOCALAPPDATA%\Programs\Python\Python39\python.exe"
+    "%PROGRAMFILES%\Python311\python.exe"
+    "%PROGRAMFILES%\Python310\python.exe"
+    "%PROGRAMFILES%\Python39\python.exe"
+    "C:\Python311\python.exe"
+    "C:\Python310\python.exe"
+    "C:\Python39\python.exe"
+) do (
+    if not defined PYTHON if exist "%%~P" set PYTHON=%%~P
+)
+
+:found
+if not defined PYTHON (
+    echo [ERROR] Python tidak ditemukan.
     echo.
-    echo Coba gunakan perintah: python main.py
+    echo Pastikan Python sudah terinstall dan ditambahkan ke PATH,
+    echo atau install Python dari https://python.org
+    echo.
+    echo Atau jalankan langsung: python main.py
     pause
     exit /b 1
 )
